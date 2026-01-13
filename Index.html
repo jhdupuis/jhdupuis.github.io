@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+    <title>Jemma Dupuis - Portfolio</title>
+    <meta name="description" content="Technical and Creative Product Marketing Manager portfolio." />
+    <style>
+        body {
+            margin: 5% auto;
+            background: #f2f2f2;
+            color: #444444;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            text-shadow: 0 1px 0 #ffffff;
+            max-width: 73%;
+        }
+
+        code {
+            background: white;
+        }
+
+        a {
+            border-bottom: 1px solid #444444;
+            color: #444444;
+            text-decoration: none;
+        }
+
+        a:hover {
+            border-bottom: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        td {
+            vertical-align: top;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        blockquote {
+            border-left: 5px solid #ccc;
+            padding-left: 15px;
+            font-style: italic;
+            margin: 20px 0;
+        }
+
+        .thumbnails {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .thumbnails>* {
+            flex: 1;
+            border-bottom: none !important;
+        }
+
+        .thumbnails img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .thumbnails a img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .experience-card {
+            text-decoration: none !important;
+            color: #444444 !important;
+            padding: 30px;
+            border-radius: 28px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            background: #fff;
+            overflow: hidden;
+            text-shadow: none;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-card.large {
+            grid-column: span 2;
+        }
+
+        .experience-card.small {
+            grid-column: span 1;
+            aspect-ratio: 1 / 1.1;
+            justify-content: space-between;
+        }
+
+        .experience-card .external-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.06);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+
+        .experience-card:hover .external-link {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-card h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1em;
+            font-weight: 500;
+            line-height: 1.4;
+            max-width: 85%;
+        }
+
+        .experience-card .company {
+            font-weight: 800;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .experience-card p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin: 0;
+            color: #444;
+            opacity: 0.9;
+        }
+
+        /* Specific Card Styles */
+        .card-tulip {
+            background-color: #ebf7c0;
+        }
+
+        .card-wpi {
+            background-color: #fcfcfc;
+        }
+
+        .card-stratus {
+            background-color: #5cb0e5;
+            color: white !important;
+        }
+
+        .card-stratus p,
+        .card-stratus .external-link {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-markforged {
+            background-color: #fbc02d;
+        }
+
+        .card-badge {
+            background-color: white;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            overflow: hidden;
+        }
+
+        .badge-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge-label {
+            background: white;
+            padding: 5px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: auto;
+        }
+
+        @media (max-width: 900px) {
+            .experience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .experience-card.small {
+                aspect-ratio: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-card.large,
+            .experience-card.small {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Jemma Dupuis</h1>
+        <aside>Technical and Creative Product Marketing Manager</aside>
+    </header>
+
+    <p>
+        <a href="#what-i-do">What I do</a> |
+        <a href="#product-launches">Product Launches</a> |
+        <a href="#writing">Writing</a> |
+        <a href="#videos">Videos</a> |
+        <a href="#testimonials">Testimonials</a> |
+        <a href="#contact">Contact</a>
+    </p>
+
+    <p>Combining a technical and creative background in Boston, Massachusetts to help hardware and software teams tell
+        the stories of their products.</p>
+
+    <p>Currently a <strong>Product Marketing Manager</strong> at <strong>OpenGov.</strong></p>
+
+    <hr>
+
+    <div class="thumbnails">
+        <div><img src="Thumbnail 1.png" alt="Thumbnail 1"></div>
+        <div><img src="Thumbnail 2.png" alt="Thumbnail 2"></div>
+        <a href="https://www.productmarketingalliance.com/"><img src="Thumbnail 3.png" alt="Thumbnail 3"></a>
+        <a href="https://www.linkedin.com/in/jhdupuis/"><img src="Thumbnail 4.png" alt="Thumbnail 4"></a>
+    </div>
+
+    <h1 id="what-i-do">What I Do</h1>
+    <p>Recently, I joined <strong>OpenGov</strong> to lead <strong>Product Marketing for the Public Service Platform and
+            Government App Builder.</strong></p>
+
+    <p>The Public Service Platform story brings together OpenGov&rsquo;s product offerings under a single unified
+        product vision to modernize government workflows and ERPs. Government App Builder helps public sector
+        organizations address operational gaps and build digital workflows without adding complexity. <a
+            href="https://opengov.com/">Learn
+            more about OpenGov &rarr;</a></p>
+
+    <p>I spent the previous 5 years at Tulip, working with 11+ product teams to launch new software, hardware, and
+        ecosystem products and narratives for Tulip&rsquo;s Frontline Operations platform. <a
+            href="https://tulip.com/">Learn more about
+            Tulip &rarr;</a></p>
+
+    <h2 id="product-launches">Product Launches</h2>
+    <ul>
+        <li><strong>OpenGov Agent Studio</strong> (AI launch coming soon)</li>
+        <li><a href="https://opengov.com/products/government-app-builder/"><strong>Government App Builder</strong></a>
+            (Software launch)</li>
+        <li><a href="https://opengov.com/products/government-app-library/"><strong>Government App Library</strong></a>
+            (Software launch)</li>
+        <li><a href="https://developer.opengov.com/"><strong>OpenGov Developer Portal</strong></a> (API launch)</li>
+        <li><a href="https://tulip.co/blog/introducing-tulip-mcp/"><strong>Tulip MCP</strong></a> (AI launch)</li>
+        <li><a href="https://tulip.co/blog/introducing-ai-composer/"><strong>Tulip AI Composer</strong></a> (AI launch)
+        </li>
+        <li><a href="https://tulip.co/blog/frontline-copilot-update-spring-2024/"><strong>Frontline Copilot</strong></a>
+            (AI launch)</li>
+        <li><a href="https://tulip.co/whats-new/"><strong>Tulip Product Release Hub and Blog</strong></a> (Program
+            launch)</li>
+        <li><a href="https://developer.tulip.co/"><strong>Tulip Developer Program</strong></a> (Program launch)</li>
+        <li><a href="https://www.youtube.com/watch?v=A62jT_2UIQY"><strong>Tulip Showcase Event</strong></a> (Watch the
+            launch event I led)</li>
+        <li><a href="https://www.youtube.com/watch?v=WDkTfmCJy-M"><strong>Workflows, Elevated Event</strong></a> (Watch
+            the launch event I led)</li>
+        <li><a href="https://tulip.co/blog/automations-ga/"><strong>Automations</strong></a> (Software launch)</li>
+        <li><a href="https://tulip.co/blog/introducing-analytics-insights-for-frontline-engineers/"><strong>Analytics
+                    Insights</strong></a> (Software launch)</li>
+        <li><a
+                href="https://tulip.co/press/tulip-continues-to-democratize-iiot-at-the-edge-computer-vision-and-machine-learning-in-frontline-operations/"><strong>Edge
+                    IO and Vision</strong></a> (Hardware/software launch)</li>
+        <li><a href="https://tulip.co/blog/introducing-edge-io-a-new-edge-device-from-tulip/"><strong>Edge
+                    IO</strong></a> (Hardware launch)</li>
+        <li><a href="https://tulip.co/blog/introducing-machine-kit/"><strong>Machine Kit</strong></a> (Hardware launch)
+        </li>
+    </ul>
+
+    <h2 id="where-ive-been">Where I&rsquo;ve Been</h2>
+    <div class="experience-grid">
+        <a href="https://tulip.co" class="experience-card large card-tulip" target="_blank">
+            <span class="external-link">↗</span>
+            <h3>Product Marketing Manager</h3>
+            <span class="company">Tulip</span>
+            <p>From working with product teams on launches, to building compelling messaging for commercial teams, to
+                leading release notes programs, product led-growth initiatives, and working with industry analysts.</p>
+        </a>
+
+        <a href="https://www.wpi.edu" class="experience-card large card-wpi" target="_blank">
+            <span class="external-link">↗</span>
+            <p>I hold a bachelor's degree in <strong>Management Engineering and Operations</strong> from
+                <strong>Worcester Polytechnic Institute</strong>, where I completed complex long-term projects in
+                London, UK and Reykjavik, Iceland.
+            </p>
+            <br>
+            <p>I also worked as a <strong>Digital Asset Manager and Photographer</strong> for the WPI Office of
+                Marketing and Communications.</p>
+        </a>
+
+        <a href="https://www.stratus.com" class="experience-card small card-stratus" target="_blank">
+            <span class="external-link">↗</span>
+            <h3>Digital Marketing Internship</h3>
+            <span class="company">Stratus</span>
+        </a>
+
+        <a href="https://markforged.com" class="experience-card small card-markforged" target="_blank">
+            <span class="external-link">↗</span>
+            <h3>Marketing Internship</h3>
+            <span class="company">Markforged</span>
+        </a>
+
+        <a href="https://www.appcues.com" class="experience-card small card-badge card-appcues" target="_blank">
+            <span class="external-link">↗</span>
+            <div class="badge-icon"><img src="Thumbnail 5.png" alt="Appcues"></div>
+            <div class="badge-label">Appcues Course</div>
+        </a>
+
+        <a href="https://www.productmarketingalliance.com" class="experience-card small card-badge card-pma"
+            target="_blank">
+            <span class="external-link">↗</span>
+            <div class="badge-icon"><img src="Thumbnail 6.png" alt="PMA"></div>
+            <div class="badge-label">PMA Certification</div>
+        </a>
+    </div>
+
+    <h2 id="testimonials">What People Say</h2>
+    <blockquote>
+        &ldquo;Jemma is awesome. Great writer. Great marketer. Great energy. They have solid PMM, pricing, and
+        positioning perspective, and the right combo of insight + ability to communicate key considerations. This makes
+        working together in a fast paced environment very easy.&rdquo;<br>
+        - <strong>Olga S., Product Management Lead</strong>
+    </blockquote>
+
+    <blockquote>
+        &ldquo;I'm always thrilled when I get to work with Jemma on projects and the events from last year were no
+        exception. Jemma is always a team player and is willing to step in and help out and provide expertise and
+        feedback.&rdquo;<br>
+        - <strong>Elise J., Head of Corporate Marketing</strong>
+    </blockquote>
+
+    <blockquote>
+        &ldquo;Honestly, I love working with Jemma. I'll keep this short, but here is what I really appreciate:
+        They&rsquo;re a great partner. They&rsquo;re very understanding and compassionate. They understand working with
+        multiple stakeholders and are able to be flexible.&rdquo;<br>
+        - <strong>Mark F., Ecosystem Team Lead</strong>
+    </blockquote>
+
+    <blockquote>
+        &ldquo;Jemma is great - working together has proven to be a solid pairing - The prep for Frontline Copilot was a
+        team effort and it wouldn't have been possible without her.&rdquo;<br>
+        - <strong>Pete H., Product Management Lead</strong>
+    </blockquote>
+
+    <blockquote>
+        &ldquo;We were lucky to recruit Jemma, and they are the type of talent you want on your team. They&rsquo;re
+        smart, proactive, diligent, and consistently have a very positive attitude toward work, and everyone around
+        them.&rdquo;<br>
+        - <strong>Rick C., Head of Field Marketing, Americas</strong>
+    </blockquote>
+
+    <blockquote>
+        &ldquo;Jemma has a creative eye and a knack for understanding technical equipment and programs. Jemma was
+        delightful to work with and fit in very well with our creative team, and would surely be an asset to any
+        organization.&rdquo;<br>
+        - <strong>Jacleen B., Creative Director, Marketing</strong>
+    </blockquote>
+
+    <h2 id="writing">What I&rsquo;ve Written</h2>
+    <ul>
+        <li><a href="https://tulip.co/case-studies/rfk-racing/"><strong>RFK Racing</strong></a> (Case study)</li>
+        <li><a href="https://tulip.co/case-studies/mack-molding/"><strong>Mack Molding</strong></a> (Case study)</li>
+        <li><a href="https://tulip.co/case-studies/autodesk-technology-center/"><strong>Autodesk</strong></a> (Case
+            study)</li>
+        <li><a href="https://tulip.co/blog/whats-new-in-tulip-spring-2025/"><strong>What&rsquo;s New in Tulip, Spring
+                    2025</strong></a> (Blog)</li>
+        <li><a href="https://tulip.co/blog/ai-trigger-actions-beta/"><strong>No-Code AI Tools</strong></a> (Blog)</li>
+        <li><a href="https://tulip.co/blog/data-contextualization-operations-platform-vs-mes/"><strong>Data
+                    Contextualization</strong></a> (Blog)</li>
+        <li><a href="https://tulip.co/blog/scaling-operations-with-tulips-multisite-capabilities/"><strong>Multisite
+                    Capabilities</strong></a> (Blog)</li>
+        <li><a href="https://tulip.co/ebooks/overall-equipment-effectiveness-oee/"><strong>Guide to OEE</strong></a>
+            (eBook)</li>
+        <li><a href="https://tulip.co/ebooks/3d-printing/"><strong>Guide to Apps for 3D Printing</strong></a> (eBook)
+        </li>
+        <li><a href="https://tulip.co/ebooks/building-a-pop-up-factory-in-2024/"><strong>Building a Pop-Up Factory in
+                    2024</strong></a> (eBook)</li>
+        <li><a href="https://tulip.co/ebooks/building-a-pop-up-factory-at-digital-factory-2022/"><strong>Building a
+                    Pop-Up Factory in 2022</strong></a> (eBook)</li>
+        <li><a href="https://digitalwpi.wpi.edu/concern/student_works/mw22v800v?locale=en"><strong>Engaging Medical
+                    Device Manufacturing Industry in MA with MassMEP</strong></a> (Research Paper)</li>
+        <li><a href="https://digitalwpi.wpi.edu/concern/student_works/2r36tz22p?locale=en"><strong>Investigating the
+                    Feasibility of a Project Center in Iceland</strong></a> (Research Paper)</li>
+        <li><a href="https://www.wpi.edu/news/blazing-trails-new-iceland-project-center"><strong>Blazing Trails at the
+                    New Iceland Project Center</strong></a> (Quoted)</li>
+    </ul>
+
+    <h2 id="videos">Videos I&rsquo;ve Made</h2>
+    <ul>
+        <li><a
+                href="https://opengov.com/resources/the-future-of-government-software-no-code-innovation-for-every-department-live-on-11-19/"><strong>Build
+                    Custom Apps Faster with OpenGov</strong></a> (Webinar)</li>
+        <li><a href="https://community.tulip.co/t/build-better-with-frontline-copilot-june-5-2024-11am-et/11534"><strong>Build
+                    Better AI Apps</strong></a> (Webinar)</li>
+        <li><a href="https://youtu.be/9YxKHkDiw9I"><strong>Mack Molding &amp; Tulip</strong></a> (Case Study)</li>
+        <li><a href="https://youtu.be/q34dxFgFFl4"><strong>Introducing Tulip</strong></a> (Video)</li>
+        <li><a href="https://youtu.be/Ikj3Rt-O7FQ"><strong>Tulip Ad Campaign</strong></a> (Video)</li>
+        <li><a href="https://youtu.be/bX5VJd8jgIc"><strong>DMG MORI, Microsoft &amp; Tulip</strong></a> (Video)</li>
+        <li><strong>3D Printing</strong> <a href="https://youtu.be/J7JuCmmwGNI"><strong>Soft Jaws</strong></a>, <a
+                href="https://youtu.be/UEYkJ15d5oM"><strong>End Effectors</strong></a>, <a
+                href="https://youtu.be/YnXUPxi_hCs"><strong>Inspection
+                    Fixtures</strong></a>, <a href="https://youtu.be/O9fSusreWiY"><strong>Welding Fixtures</strong></a>
+            (Video Series)</li>
+        <li><a href="https://youtu.be/iK37z2xSraU"><strong>We Are Markforged</strong></a> (Video)</li>
+    </ul>
+
+    <h2 id="thoughts">Thoughts on Product Marketing</h2>
+    <p>The purpose of product marketing is to align the company's value and capabilities with market and customer needs.
+        It is responsible for providing a clear explanation of how and why the company and its products are valuable,
+        and for driving expansion by demonstrating this value. Good product marketing influences every stage of the
+        customer journey, from awareness and consideration to evaluation and onboarding.</p>
+
+    <p>To get there, product marketing teams need to develop:</p>
+    <ul>
+        <li>Deep knowledge of customers, marketing, competitors, and the product</li>
+        <li>Cross-functional relationships to help them take ownership of the team's messages</li>
+    </ul>
+
+    <p>Good product marketing can help a company achieve its goals by improving the effectiveness of the marketing team
+        with a thorough understanding of the product, increasing the efficiency of the commercial teams through targeted
+        content and right-fit sales strategies, and providing buyers and users with relevant content to advance in their
+        journey. Finally, product marketing helps the product team respond more quickly to market, segment, analyst, and
+        competitor news.</p>
+
+    <p><em>I love Emma Stratton's work on punchy messaging. Great messaging and positioning starts with VBF.</em></p>
+
+    <ul>
+        <li><strong>V: Value proposition</strong> &ndash; kick things off with a big goal that resonates</li>
+        <li><strong>B: Benefits</strong> &ndash; here you can show off what your product provides</li>
+        <li><strong>F: Features</strong> &ndash; the last part explains how the product achieves benefits</li>
+    </ul>
+
+    <p>A benefit is something that an individual can achieve. For example, if your product helps an engineer save time
+        by filtering through noisy data, that would be a benefit. A value proposition is something that a team,
+        department, or organization as a whole achieves. For instance, if an engineering team consistently meets its OKR
+        targets because of the product, that would be a value proposition.</p>
+
+    <ul>
+        <li><strong>Value proposition:</strong> Fix issues before end customers even notice.</li>
+        <li><strong>Benefit:</strong> See your entire stack&rsquo;s performance in one place.</li>
+        <li><strong>Feature:</strong> A dashboard that consolidates performance data.</li>
+    </ul>
+
+    <p>From this, the message would be:</p>
+    <p><em>Resolve issues before customers notice them. Stop problems before they start by monitoring your entire
+            stack&rsquo;s performance in one dashboard.</em></p>
+
+    <h2 id="tools">Tools I Use</h2>
+    <p>Google Workspace, Figma, TickTick, Atlassian, Gong, Sigma, Looker, ChatGPT Enterprise, Guru, Arc Browser, Shottr,
+        Screen Studio, Descript, DeepL Write, Salesforce, Product Marketing Alliance, Camo, ColorSlurp, Alcove, Screely.
+    </p>
+
+    <h2 id="fun-facts">Thanks For Visiting!</h2>
+    <p>You made it this far. Rapid fire fun facts. Go &rarr;</p>
+    <ul>
+        <li>I am an identical twin</li>
+        <li>I previously worked as a professional photographer</li>
+        <li>I worked at an escape room</li>
+        <li>I ski year round (water and snow!)</li>
+        <li>I've briefly lived in Reykjavik, Iceland, and London, England!</li>
+    </ul>
+
+    <p id="contact"><strong>Email:</strong> <a href="mailto:jemmadupuis@gmail.com">jemmadupuis@gmail.com</a></p>
+
+    <hr>
+
+    <footer>
+        <p>Created by Jemma Dupuis in 2026.</p>
+    </footer>
+</body>
+
+</html>
