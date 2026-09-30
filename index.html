@@ -524,7 +524,7 @@
         <header class="hero">
             <div class="hero-intro">
                 <div class="hero-photo-frame">
-                    <img class="hero-photo" src="Thumbnail%201.png" alt="Jemma Dupuis" data-headshot-cycle="Thumbnail%201.png|Thumbnail%201-2.png|Thumbnail%201-3.png">
+                    <img class="hero-photo" src="hero-photo.jpeg" alt="Jemma Dupuis">
                 </div>
                 <div class="hero-text">
                     <h1>Jemma Dupuis</h1>
@@ -765,36 +765,6 @@
         </footer>
     </main>
     <script>
-        document.querySelectorAll('[data-headshot-cycle]').forEach((headshot) => {
-            const images = headshot.dataset.headshotCycle.split('|');
-            let currentImage = 0;
-            let cycleTimer;
-
-            images.slice(1).forEach((source) => {
-                const preload = new Image();
-                preload.src = source;
-            });
-
-            const showNextImage = () => {
-                currentImage = (currentImage + 1) % images.length;
-                headshot.src = images[currentImage];
-            };
-
-            const resetHeadshot = () => {
-                window.clearInterval(cycleTimer);
-                currentImage = 0;
-                headshot.src = images[currentImage];
-            };
-
-            headshot.addEventListener('mouseenter', () => {
-                resetHeadshot();
-                showNextImage();
-                cycleTimer = window.setInterval(showNextImage, 750);
-            });
-
-            headshot.addEventListener('mouseleave', resetHeadshot);
-        });
-
         document.querySelectorAll('[role="tablist"]').forEach((tabList) => {
             const tabs = Array.from(tabList.querySelectorAll('[role="tab"]'));
             const highlight = tabList.querySelector('.tab-highlight');
