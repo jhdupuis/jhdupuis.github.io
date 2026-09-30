@@ -80,19 +80,19 @@
 
         .hero-intro {
             display: grid;
-            grid-template-columns: 260px minmax(0, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             align-items: start;
-            gap: 32px;
+            gap: clamp(32px, 5vw, 72px);
         }
 
         .hero-photo-frame {
             position: relative;
-            width: 260px;
-            height: 260px;
-            margin-top: 12px;
+            width: 100%;
+            aspect-ratio: 1;
+            margin-top: 0;
             min-height: 0;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 4px;
         }
 
         .hero-photo {
@@ -121,6 +121,13 @@
             font-weight: 400;
             letter-spacing: normal;
             line-height: 1.8;
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+
+        .hero-text.is-showing-panel .hero-copy {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .hero-copy p {
@@ -140,57 +147,30 @@
             border-bottom: 1px solid var(--ink);
         }
 
-        .section {
-            padding: 92px 0;
-        }
-
-        .section-heading {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 24px;
-            margin-bottom: 34px;
-        }
-
-        h2 {
-            margin-bottom: 0;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: normal;
-            line-height: 1.8;
-        }
-
-        .section-note {
-            max-width: 330px;
-            margin-bottom: 0;
-            color: var(--muted);
-            font-size: 0.95rem;
-            line-height: 1.45;
-            text-align: right;
+        .tab-content-stage {
+            position: relative;
         }
 
         .tab-interface {
             display: flex;
             flex-direction: column;
-            height: 82px;
-            overflow: hidden;
+            height: auto;
+            overflow: visible;
             background: transparent;
             border: 0;
             border-radius: 14px;
+            margin-top: 48px;
             padding: 10px 0 0;
-            transition: height 0.35s ease;
-        }
-
-        .tab-interface.is-engaged {
-            height: 420px;
         }
 
         .tab-list {
             position: relative;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 6px;
+            overflow-x: auto;
             padding: 10px 0;
+            scrollbar-width: thin;
         }
 
         .tab-highlight {
@@ -214,7 +194,7 @@
         .tab-button {
             position: relative;
             z-index: 1;
-            padding: 12px 16px;
+            padding: 10px 8px;
             border: 0;
             border-radius: 999px;
             background: transparent;
@@ -223,6 +203,7 @@
             font: inherit;
             font-size: 0.94rem;
             font-weight: 500;
+            white-space: nowrap;
         }
 
         .tab-button:hover,
@@ -237,7 +218,7 @@
         }
 
         .tab-panel {
-            padding: 18px 0 6px;
+            padding: 0;
         }
 
         .tab-panel[hidden] {
@@ -245,23 +226,50 @@
         }
 
         .tab-panels {
-            flex: 1;
-            min-height: 0;
-            overflow-y: auto;
+            position: absolute;
+            inset: 0;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            overflow: visible;
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+            transition: opacity 0.2s ease;
+        }
+
+        .hero-text.is-showing-panel .tab-panels {
+            opacity: 1;
+            pointer-events: auto;
+            visibility: visible;
         }
 
         .tab-panel-content {
             padding: 0;
             color: var(--muted);
-            font-size: 0.95rem;
-            line-height: 1.55;
+            font-size: 0.86rem;
+            line-height: 1.35;
+        }
+
+        .tab-panel-content p {
+            margin-bottom: 0.75em;
         }
 
         .tab-panel-content p:last-child {
             margin-bottom: 0;
+        }
+
+        #thoughts .tab-panel-content {
+            font-size: 0.8rem;
+            line-height: 1.25;
+        }
+
+        #thoughts .tab-panel-content p {
+            margin-bottom: 0.55em;
+        }
+
+        #thoughts .tab-panel-content ul {
+            line-height: 1.25;
         }
 
         .tab-panel-content ul {
@@ -280,9 +288,9 @@
         }
 
         .link-list li {
-            padding: 8px 0;
-            font-size: 0.94rem;
-            line-height: 1.4;
+            padding: 3px 0;
+            font-size: 0.88rem;
+            line-height: 1.25;
         }
 
         .link-list a {
@@ -293,7 +301,7 @@
             display: inline;
             margin-left: 4px;
             color: var(--muted);
-            font-size: 0.8rem;
+            font-size: 0.74rem;
             font-weight: 300;
             letter-spacing: 0.01em;
         }
@@ -378,11 +386,6 @@
             text-align: center;
         }
 
-        #quick-links {
-            order: 2;
-            padding: 0 clamp(24px, 5vw, 72px);
-        }
-
         .testimonials-panel {
             padding: 0;
             color: var(--ink);
@@ -440,6 +443,7 @@
         @media (max-width: 760px) {
             .tab-interface {
                 height: 82px;
+                margin-top: 40px;
             }
 
             .hero {
@@ -453,8 +457,7 @@
             }
 
             .hero-photo-frame {
-                width: 200px;
-                height: 200px;
+                width: min(100%, 360px);
             }
 
             h1 {
@@ -466,30 +469,11 @@
                 margin-left: 0;
             }
 
-            .section {
-                padding: 64px 0;
-            }
-
-            #quick-links {
-                padding: 0 20px;
-            }
-
             .built-with {
                 margin-left: 36px;
             }
 
-            .section-heading {
-                display: block;
-            }
-
-            .section-note {
-                margin-top: 16px;
-                text-align: left;
-            }
-
             .tab-list {
-                flex-wrap: nowrap;
-                overflow-x: auto;
                 scrollbar-width: thin;
             }
 
@@ -545,11 +529,7 @@
                                 href="https://www.assemblyai.com/" target="_blank"
                                 rel="noreferrer"><strong>AssemblyAI</strong></a>, based in Brooklyn, NY.</p>
                     </div>
-                </div>
-            </div>
-        </header>
 
-        <section class="section" id="quick-links">
             <div class="tab-interface">
                 <div class="tab-list" role="tablist" aria-label="Portfolio content categories">
                     <span class="tab-highlight" aria-hidden="true"></span>
@@ -563,45 +543,30 @@
                         aria-controls="testimonials" aria-selected="false" tabindex="-1">Testimonials</button>
                     <button class="tab-button" id="tab-thoughts" type="button" role="tab" aria-controls="thoughts"
                         aria-selected="false" tabindex="-1">PMM Philosophy</button>
-                    <button class="tab-button" id="tab-tools" type="button" role="tab" aria-controls="tools"
-                        aria-selected="false" tabindex="-1">Tools I use</button>
                 </div>
                 <div class="tab-panels">
                 <section class="tab-panel" id="product-launches" role="tabpanel" aria-labelledby="tab-product-launches" hidden>
                     <ul class="link-list">
-                        <li><a href="https://opengov.com/products/og-assist/">OpenGov OG Assist</a><span
-                                class="link-type">AI launch</span></li>
-                        <li><a href="https://opengov.com/products/government-app-builder/">Government App Builder</a><span
-                                class="link-type">Software launch</span></li>
+                        <li><a href="https://opengov.com/products/og-assist/">OpenGov OG Assist</a></li>
+                        <li><a href="https://opengov.com/products/government-app-builder/">Government App Builder</a></li>
                         <li><a href="https://opengov.com/products/government-app-library/grants-management/">Grants
-                                Management</a><span class="link-type">Software launch</span></li>
-                        <li><a href="https://developer.opengov.com/">OpenGov Developer Portal</a><span
-                                class="link-type">API launch</span></li>
-                        <li><a href="https://tulip.co/blog/introducing-tulip-mcp/">Tulip MCP</a><span
-                                class="link-type">AI launch</span></li>
-                        <li><a href="https://tulip.co/blog/introducing-ai-composer/">Tulip AI Composer</a><span
-                                class="link-type">AI launch</span></li>
-                        <li><a href="https://tulip.co/blog/frontline-copilot-update-spring-2024/">Frontline Copilot</a><span
-                                class="link-type">AI launch</span></li>
-                        <li><a href="https://tulip.co/whats-new/">Tulip Product Release Hub and Blog</a><span
-                                class="link-type">Program launch</span></li>
-                        <li><a href="https://developer.tulip.co/">Tulip Developer Program</a><span
-                                class="link-type">Program launch</span></li>
-                        <li><a href="https://www.youtube.com/watch?v=A62jT_2UIQY">Tulip Showcase Event</a><span
-                                class="link-type">Launch event</span></li>
-                        <li><a href="https://www.youtube.com/watch?v=WDkTfmCJy-M">Workflows, Elevated Event</a><span
-                                class="link-type">Launch event</span></li>
-                        <li><a href="https://tulip.co/blog/automations-ga/">Automations</a><span
-                                class="link-type">Software launch</span></li>
+                                Management</a></li>
+                        <li><a href="https://developer.opengov.com/">OpenGov Developer Portal</a></li>
+                        <li><a href="https://tulip.co/blog/introducing-tulip-mcp/">Tulip MCP</a></li>
+                        <li><a href="https://tulip.co/blog/introducing-ai-composer/">Tulip AI Composer</a></li>
+                        <li><a href="https://tulip.co/blog/frontline-copilot-update-spring-2024/">Frontline Copilot</a></li>
+                        <li><a href="https://tulip.co/whats-new/">Tulip Product Hub</a></li>
+                        <li><a href="https://developer.tulip.co/">Tulip Developer Program</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=A62jT_2UIQY">Tulip Showcase Event</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=WDkTfmCJy-M">Workflows, Elevated Event</a></li>
+                        <li><a href="https://tulip.co/blog/automations-ga/">Automations</a></li>
                         <li><a href="https://tulip.co/blog/introducing-analytics-insights-for-frontline-engineers/">Analytics
-                                Insights</a><span class="link-type">Software launch</span></li>
+                                Insights</a></li>
                         <li><a
                                 href="https://tulip.co/press/tulip-continues-to-democratize-iiot-at-the-edge-computer-vision-and-machine-learning-in-frontline-operations/">Edge
-                                IO and Vision</a><span class="link-type">Hardware/software launch</span></li>
-                        <li><a href="https://tulip.co/blog/introducing-edge-io-a-new-edge-device-from-tulip/">Edge IO</a><span
-                                class="link-type">Hardware launch</span></li>
-                        <li><a href="https://tulip.co/blog/introducing-machine-kit/">Machine Kit</a><span
-                                class="link-type">Hardware launch</span></li>
+                                IO and Vision</a></li>
+                        <li><a href="https://tulip.co/blog/introducing-edge-io-a-new-edge-device-from-tulip/">Edge IO</a></li>
+                        <li><a href="https://tulip.co/blog/introducing-machine-kit/">Machine Kit</a></li>
                     </ul>
                 </section>
 
@@ -611,16 +576,12 @@
                                 class="link-type">Case study</span></li>
                         <li><a href="https://tulip.co/case-studies/mack-molding/">Mack Molding</a><span
                                 class="link-type">Case study</span></li>
-                        <li><a href="https://tulip.co/case-studies/autodesk-technology-center/">Autodesk</a><span
-                                class="link-type">Case study</span></li>
-                        <li><a href="https://tulip.co/blog/whats-new-in-tulip-spring-2025/">What’s New in Tulip, Spring
-                                2025</a><span class="link-type">Blog</span></li>
+                        <li><a href="https://tulip.co/blog/whats-new-in-tulip-spring-2025/">What's New in Tulip</a><span
+                                class="link-type">Blog</span></li>
                         <li><a href="https://tulip.co/blog/ai-trigger-actions-beta/">No-Code AI Tools</a><span
                                 class="link-type">Blog</span></li>
                         <li><a href="https://tulip.co/blog/data-contextualization-operations-platform-vs-mes/">Data
                                 Contextualization</a><span class="link-type">Blog</span></li>
-                        <li><a href="https://tulip.co/blog/scaling-operations-with-tulips-multisite-capabilities/">Multisite
-                                Capabilities</a><span class="link-type">Blog</span></li>
                         <li><a href="https://tulip.co/ebooks/overall-equipment-effectiveness-oee/">Guide to OEE</a><span
                                 class="link-type">eBook</span></li>
                         <li><a href="https://tulip.co/ebooks/3d-printing/">Guide to Apps for 3D Printing</a><span
@@ -736,16 +697,11 @@
                     </div>
                 </section>
 
-                <section class="tab-panel" id="tools" role="tabpanel" aria-labelledby="tab-tools" hidden>
-                    <div class="tab-panel-content">
-                        <p>Google Workspace, Figma, TickTick, Atlassian, Gong, Sigma, Looker, ChatGPT Enterprise, Guru, Arc
-                            Browser, Shottr, Screen Studio, Descript, DeepL Write, Salesforce, Product Marketing Alliance,
-                            Camo, ColorSlurp, Alcove, and Screely.</p>
-                    </div>
-                </section>
                 </div>
             </div>
-        </section>
+                </div>
+            </div>
+        </header>
 
         <footer class="site-footer" id="contact">
             <p class="built-with">Built in 2026 by Jemma Dupuis with
@@ -765,14 +721,36 @@
         </footer>
     </main>
     <script>
+        const tabInterface = document.querySelector('.tab-interface');
+        const tabList = tabInterface.querySelector('.tab-list');
+        const tabPanels = tabInterface.querySelector('.tab-panels');
+        const heroText = tabInterface.closest('.hero-text');
+        const heroCopy = heroText.querySelector('.hero-copy');
+        const contentStage = document.createElement('div');
+
+        contentStage.className = 'tab-content-stage';
+        heroText.insertBefore(contentStage, heroCopy);
+        contentStage.append(heroCopy, tabPanels);
+        tabInterface.append(tabList);
+
+        const syncContentStageHeight = () => {
+            contentStage.style.height = `${heroCopy.offsetHeight}px`;
+        };
+
+        syncContentStageHeight();
+        window.addEventListener('resize', syncContentStageHeight);
+        if (document.fonts) document.fonts.ready.then(syncContentStageHeight);
+
         document.querySelectorAll('[role="tablist"]').forEach((tabList) => {
             const tabs = Array.from(tabList.querySelectorAll('[role="tab"]'));
             const highlight = tabList.querySelector('.tab-highlight');
             const tabInterface = tabList.closest('.tab-interface');
+            const heroText = tabInterface.closest('.hero-text');
             let hoverTimer;
 
             const moveHighlight = (tab) => {
                 tabInterface.classList.add('is-engaged');
+                heroText.classList.add('is-showing-panel');
                 highlight.style.left = `${tab.offsetLeft}px`;
                 highlight.style.width = `${tab.offsetWidth}px`;
             };
@@ -800,6 +778,7 @@
                     panel.hidden = true;
                 });
                 tabInterface.classList.remove('is-engaged');
+                heroText.classList.remove('is-showing-panel');
             };
 
             tabs.forEach((tab, index) => {
