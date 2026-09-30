@@ -9,7 +9,7 @@
         content="Jemma Dupuis is an AI-native product marketer with a technical and creative background.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #444444;
@@ -36,7 +36,7 @@
             min-height: 100vh;
             background: #f2f2f2;
             color: var(--ink);
-            font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: "Roboto Slab", Georgia, serif;
             font-size: 16px;
             line-height: 1.8;
             text-shadow: 0 1px 0 #ffffff;
@@ -166,25 +166,23 @@
         .tab-list {
             position: relative;
             display: flex;
-            flex-wrap: nowrap;
-            gap: 6px;
-            overflow-x: auto;
+            flex-wrap: wrap;
+            gap: 2px;
             padding: 10px 0;
-            scrollbar-width: thin;
         }
 
         .tab-highlight {
             position: absolute;
-            top: 10px;
+            top: 0;
             left: 0;
             z-index: 0;
             width: 0;
-            height: calc(100% - 20px);
+            height: 0;
             border-radius: 999px;
             background: var(--ink);
             opacity: 0;
             pointer-events: none;
-            transition: left 0.28s ease, width 0.28s ease, opacity 0.15s ease;
+            transition: left 0.28s ease, top 0.28s ease, width 0.28s ease, height 0.28s ease, opacity 0.15s ease;
         }
 
         .tab-interface.is-engaged .tab-highlight {
@@ -194,14 +192,14 @@
         .tab-button {
             position: relative;
             z-index: 1;
-            padding: 10px 8px;
+            padding: 10px 5px;
             border: 0;
             border-radius: 999px;
             background: transparent;
             color: var(--muted);
             cursor: pointer;
             font: inherit;
-            font-size: 0.94rem;
+            font-size: 0.82rem;
             font-weight: 500;
             white-space: nowrap;
         }
@@ -404,11 +402,10 @@
         }
 
         .built-with {
-            margin: 0 0 0 calc(clamp(24px, 5vw, 72px) + 16px);
+            margin: 0;
         }
 
         .footer-contact {
-            order: 2;
             margin: 0;
             color: var(--ink);
         }
@@ -442,7 +439,6 @@
 
         @media (max-width: 760px) {
             .tab-interface {
-                height: 82px;
                 margin-top: 40px;
             }
 
@@ -469,14 +465,6 @@
                 margin-left: 0;
             }
 
-            .built-with {
-                margin-left: 36px;
-            }
-
-            .tab-list {
-                scrollbar-width: thin;
-            }
-
             .tab-button {
                 flex: 0 0 auto;
             }
@@ -490,9 +478,6 @@
                 flex-direction: column;
             }
 
-            .footer-contact {
-                order: 0;
-            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -704,6 +689,8 @@
         </header>
 
         <footer class="site-footer" id="contact">
+            <p class="footer-contact">Get in touch: <a href="https://www.linkedin.com/in/jhdupuis/" target="_blank"
+                    rel="noreferrer">LinkedIn</a> or <a href="mailto:jemmadupuis@gmail.com">Email</a></p>
             <p class="built-with">Built in 2026 by Jemma Dupuis with
                 <span class="footer-logos">
                     <a href="https://www.figma.com/" class="logo-link" target="_blank" rel="noreferrer"><img
@@ -716,8 +703,6 @@
                             class="logo-icon" src="Footer%20Images/GitHub.png" alt="GitHub"></a>
                 </span>
             </p>
-            <p class="footer-contact">Get in touch: <a href="https://www.linkedin.com/in/jhdupuis/" target="_blank"
-                    rel="noreferrer">LinkedIn</a> or <a href="mailto:jemmadupuis@gmail.com">Email</a></p>
         </footer>
     </main>
     <script>
@@ -726,15 +711,19 @@
         const tabPanels = tabInterface.querySelector('.tab-panels');
         const heroText = tabInterface.closest('.hero-text');
         const heroCopy = heroText.querySelector('.hero-copy');
+        const tabHoverRegion = document.createElement('div');
         const contentStage = document.createElement('div');
 
+        tabHoverRegion.className = 'tab-hover-region';
         contentStage.className = 'tab-content-stage';
-        heroText.insertBefore(contentStage, heroCopy);
+        heroText.insertBefore(tabHoverRegion, heroCopy);
+        tabHoverRegion.append(contentStage, tabInterface);
         contentStage.append(heroCopy, tabPanels);
         tabInterface.append(tabList);
 
         const syncContentStageHeight = () => {
-            contentStage.style.height = `${heroCopy.offsetHeight}px`;
+            const activePanel = tabPanels.querySelector('.tab-panel:not([hidden])');
+            contentStage.style.height = `${Math.max(heroCopy.offsetHeight, activePanel?.scrollHeight || 0)}px`;
         };
 
         syncContentStageHeight();
@@ -752,7 +741,9 @@
                 tabInterface.classList.add('is-engaged');
                 heroText.classList.add('is-showing-panel');
                 highlight.style.left = `${tab.offsetLeft}px`;
+                highlight.style.top = `${tab.offsetTop}px`;
                 highlight.style.width = `${tab.offsetWidth}px`;
+                highlight.style.height = `${tab.offsetHeight}px`;
             };
 
             const activateTab = (tab, moveFocus = false) => {
@@ -765,6 +756,7 @@
                 });
 
                 moveHighlight(tab);
+                syncContentStageHeight();
 
                 if (moveFocus) tab.focus();
             };
@@ -779,6 +771,7 @@
                 });
                 tabInterface.classList.remove('is-engaged');
                 heroText.classList.remove('is-showing-panel');
+                syncContentStageHeight();
             };
 
             tabs.forEach((tab, index) => {
@@ -804,7 +797,7 @@
                 });
             });
 
-            tabInterface.addEventListener('mouseleave', resetTabs);
+            tabHoverRegion.addEventListener('mouseleave', resetTabs);
         });
 
         document.querySelectorAll('[data-carousel]').forEach((carousel) => {
