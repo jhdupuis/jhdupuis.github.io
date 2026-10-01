@@ -9,7 +9,7 @@
         content="Jemma Dupuis is an AI-native product marketer with a technical and creative background.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,700;1,300&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #444444;
@@ -36,11 +36,10 @@
             min-height: 100vh;
             background: #f2f2f2;
             color: var(--ink);
-            font-family: "Roboto Slab", Georgia, serif;
+            font-family: "DM Sans", Arial, sans-serif;
             font-size: 16px;
             font-weight: 300;
             line-height: 1.8;
-            text-shadow: 0 1px 0 #ffffff;
         }
 
         a {
@@ -74,7 +73,6 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 80px var(--content-gutter) 24px;
-            text-shadow: inherit;
         }
 
         h1,
@@ -108,11 +106,18 @@
             height: 100%;
             object-fit: cover;
             border-radius: 0;
+            transition: transform 0.35s ease-in-out;
+        }
+
+        .hero-photo-frame:hover .hero-photo,
+        .site-shell:has(.footer-name:hover) .hero-photo {
+            transform: scale(1.04);
         }
 
         h1 {
             max-width: none;
             margin: 0 0 22px;
+            font-family: "Playfair Display", Georgia, serif;
             font-size: 32px;
             font-weight: 700;
             letter-spacing: normal;
@@ -264,8 +269,8 @@
         }
 
         #thoughts .tab-panel-content {
-            font-size: 0.8rem;
-            line-height: 1.25;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         #thoughts .tab-panel-content p {
@@ -273,7 +278,7 @@
         }
 
         #thoughts .tab-panel-content ul {
-            line-height: 1.25;
+            line-height: 1.4;
         }
 
         .tab-panel-content ul {
@@ -299,20 +304,6 @@
 
         .link-list a {
             font-weight: 300;
-        }
-
-        .link-type {
-            display: inline;
-            margin-left: 4px;
-            color: var(--muted);
-            font-size: 0.74rem;
-            font-weight: 300;
-            letter-spacing: 0.01em;
-        }
-
-        .link-type::before {
-            content: "--";
-            margin-right: 4px;
         }
 
         .testimonials {
@@ -411,6 +402,16 @@
             margin: 0;
         }
 
+        .footer-name {
+            display: inline-block;
+            font-family: "Playfair Display", Georgia, serif;
+            transition: transform 0.25s ease-in-out;
+        }
+
+        .footer-name:hover {
+            transform: scale(1.04);
+        }
+
         .footer-contact {
             margin: 0;
             color: var(--ink);
@@ -494,6 +495,11 @@
             html {
                 scroll-behavior: auto;
             }
+
+            .hero-photo,
+            .footer-name {
+                transition: none;
+            }
         }
     </style>
 </head>
@@ -567,31 +573,24 @@
 
                 <section class="tab-panel" id="writing" role="tabpanel" aria-labelledby="tab-writing" hidden>
                     <ul class="link-list">
-                        <li><a href="https://tulip.co/case-studies/rfk-racing/">RFK Racing</a><span
-                                class="link-type">Case study</span></li>
-                        <li><a href="https://tulip.co/case-studies/mack-molding/">Mack Molding</a><span
-                                class="link-type">Case study</span></li>
-                        <li><a href="https://tulip.co/blog/whats-new-in-tulip-spring-2025/">What's New in Tulip</a><span
-                                class="link-type">Blog</span></li>
-                        <li><a href="https://tulip.co/blog/ai-trigger-actions-beta/">No-Code AI Tools</a><span
-                                class="link-type">Blog</span></li>
+                        <li><a href="https://tulip.co/case-studies/rfk-racing/">RFK Racing</a></li>
+                        <li><a href="https://tulip.co/case-studies/mack-molding/">Mack Molding</a></li>
+                        <li><a href="https://tulip.co/blog/whats-new-in-tulip-spring-2025/">What's New in Tulip</a></li>
+                        <li><a href="https://tulip.co/blog/ai-trigger-actions-beta/">No-Code AI Tools</a></li>
                         <li><a href="https://tulip.co/blog/data-contextualization-operations-platform-vs-mes/">Data
-                                Contextualization</a><span class="link-type">Blog</span></li>
-                        <li><a href="https://tulip.co/ebooks/overall-equipment-effectiveness-oee/">Guide to OEE</a><span
-                                class="link-type">eBook</span></li>
-                        <li><a href="https://tulip.co/ebooks/3d-printing/">Guide to Apps for 3D Printing</a><span
-                                class="link-type">eBook</span></li>
+                                Contextualization</a></li>
+                        <li><a href="https://tulip.co/ebooks/overall-equipment-effectiveness-oee/">Guide to OEE</a></li>
+                        <li><a href="https://tulip.co/ebooks/3d-printing/">Guide to Apps for 3D Printing</a></li>
                         <li><a href="https://tulip.co/ebooks/building-a-pop-up-factory-in-2024/">Building a Pop-Up Factory
-                                in 2024</a><span class="link-type">eBook</span></li>
+                                in 2024</a></li>
                         <li><a href="https://tulip.co/ebooks/building-a-pop-up-factory-at-digital-factory-2022/">Building a
-                                Pop-Up Factory in 2022</a><span class="link-type">eBook</span></li>
+                                Pop-Up Factory in 2022</a></li>
                         <li><a href="https://digitalwpi.wpi.edu/concern/student_works/mw22v800v?locale=en">Engaging Med. Device
-                                Mfg. Industry with MassMEP</a><span class="link-type">Research paper</span></li>
+                                Mfg. Industry with MassMEP</a></li>
                         <li><a href="https://digitalwpi.wpi.edu/concern/student_works/2r36tz22p?locale=en">Investigating the
-                                Feasibility of a Project Center in Iceland</a><span class="link-type">Research paper</span>
-                        </li>
+                                Feasibility of a Project Center in Iceland</a></li>
                         <li><a href="https://www.wpi.edu/news/blazing-trails-new-iceland-project-center">Blazing Trails at
-                                the New Iceland Project Center</a><span class="link-type">Quoted</span></li>
+                                the New Iceland Project Center</a></li>
                     </ul>
                 </section>
 
@@ -599,27 +598,18 @@
                     <ul class="link-list">
                         <li><a
                                 href="https://opengov.com/resources/the-future-of-government-software-no-code-innovation-for-every-department-live-on-11-19/">Build
-                                Custom Apps Faster with OpenGov</a><span class="link-type">Webinar</span></li>
+                                Custom Apps Faster with OpenGov</a></li>
                         <li><a href="https://community.tulip.co/t/build-better-with-frontline-copilot-june-5-2024-11am-et/11534">Build
-                                Better AI Apps</a><span class="link-type">Webinar</span></li>
-                        <li><a href="https://youtu.be/9YxKHkDiw9I">Mack Molding &amp; Tulip</a><span
-                                class="link-type">Case study</span></li>
-                        <li><a href="https://youtu.be/q34dxFgFFl4">Introducing Tulip</a><span class="link-type">Video</span>
-                        </li>
-                        <li><a href="https://youtu.be/Ikj3Rt-O7FQ">Tulip Ad Campaign</a><span class="link-type">Video</span>
-                        </li>
-                        <li><a href="https://youtu.be/bX5VJd8jgIc">DMG MORI, Microsoft &amp; Tulip</a><span
-                                class="link-type">Video</span></li>
-                        <li><a href="https://youtu.be/J7JuCmmwGNI">Soft Jaws</a><span class="link-type">3D printing video</span>
-                        </li>
-                        <li><a href="https://youtu.be/UEYkJ15d5oM">End Effectors</a><span class="link-type">3D printing
-                                video</span></li>
-                        <li><a href="https://youtu.be/YnXUPxi_hCs">Inspection Fixtures</a><span class="link-type">3D
-                                printing video</span></li>
-                        <li><a href="https://youtu.be/O9fSusreWiY">Welding Fixtures</a><span class="link-type">3D printing
-                                video</span></li>
-                        <li><a href="https://youtu.be/iK37z2xSraU">We Are Markforged</a><span class="link-type">Video</span>
-                        </li>
+                                Better AI Apps</a></li>
+                        <li><a href="https://youtu.be/9YxKHkDiw9I">Mack Molding &amp; Tulip</a></li>
+                        <li><a href="https://youtu.be/q34dxFgFFl4">Introducing Tulip</a></li>
+                        <li><a href="https://youtu.be/Ikj3Rt-O7FQ">Tulip Ad Campaign</a></li>
+                        <li><a href="https://youtu.be/bX5VJd8jgIc">DMG MORI, Microsoft &amp; Tulip</a></li>
+                        <li><a href="https://youtu.be/J7JuCmmwGNI">Soft Jaws</a></li>
+                        <li><a href="https://youtu.be/UEYkJ15d5oM">End Effectors</a></li>
+                        <li><a href="https://youtu.be/YnXUPxi_hCs">Inspection Fixtures</a></li>
+                        <li><a href="https://youtu.be/O9fSusreWiY">Welding Fixtures</a></li>
+                        <li><a href="https://youtu.be/iK37z2xSraU">We Are Markforged</a></li>
                     </ul>
                 </section>
 
@@ -685,7 +675,7 @@
                         <p><em>I love Emma Stratton’s work on punchy messaging. Great messaging and positioning starts with
                                 VBF.</em></p>
                         <ul>
-                            <li><strong>V: Value proposition</strong> — kick things off with a big goal that resonates.</li>
+                            <li><strong>V: Value proposition</strong> — kick things off with a big goal.</li>
                             <li><strong>B: Benefits</strong> — show off what your product provides.</li>
                             <li><strong>F: Features</strong> — explain how the product achieves those benefits.</li>
                         </ul>
@@ -701,7 +691,7 @@
         <footer class="site-footer" id="contact">
             <p class="footer-contact">Get in touch: <a href="https://www.linkedin.com/in/jhdupuis/" target="_blank"
                     rel="noreferrer">LinkedIn</a> or <a href="mailto:jemmadupuis@gmail.com">Email</a></p>
-            <p class="built-with">Built in 2026 by Jemma Dupuis with
+            <p class="built-with">Built in 2026 by <span class="footer-name">Jemma Dupuis</span> with
                 <span class="footer-logos">
                     <a href="https://www.figma.com/" class="logo-link" target="_blank" rel="noreferrer"><img
                             class="logo-icon" src="Footer%20Images/Figma.png" alt="Figma"></a>
