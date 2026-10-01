@@ -8,7 +8,8 @@ I specialize in helping hardware and software teams tell compelling stories abou
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jhdupuis/)
 
 ### Experience
-- **Product Marketing Manager** at **OpenGov** (Current): Leading Product Marketing for the Public Service Platform and Government App Builder.
+- **Sr. Product Marketing Manager** at **AssemblyAI** (Current): Supporting product launches, enablement, and messaging and positioning for voice agent infrastructure.
+- **Product Marketing Manager** at **OpenGov** (1 year): Leading Product Marketing for the Public Service Platform and Government App Builder.
 - **Product Marketing Manager** at **Tulip** (5 years): Worked with 11+ product teams to launch new AI, hardware, and ecosystem products and narratives for Tulip's Frontline Operations platform.
 
 ### Education
