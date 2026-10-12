@@ -109,8 +109,7 @@
             transition: transform 0.35s ease-in-out;
         }
 
-        .hero-photo-frame:hover .hero-photo,
-        .site-shell:has(.footer-name:hover) .hero-photo {
+        .hero-photo-frame:hover .hero-photo {
             transform: scale(1.04);
         }
 
@@ -268,19 +267,6 @@
             margin-bottom: 0;
         }
 
-        #thoughts .tab-panel-content {
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        #thoughts .tab-panel-content p {
-            margin-bottom: 0.55em;
-        }
-
-        #thoughts .tab-panel-content ul {
-            line-height: 1.4;
-        }
-
         .tab-panel-content ul {
             margin: 0;
             padding-left: 20px;
@@ -402,16 +388,6 @@
             margin: 0;
         }
 
-        .footer-name {
-            display: inline-block;
-            font-family: "Playfair Display", Georgia, serif;
-            transition: transform 0.25s ease-in-out;
-        }
-
-        .footer-name:hover {
-            transform: scale(1.04);
-        }
-
         .footer-contact {
             margin: 0;
             color: var(--ink);
@@ -496,8 +472,7 @@
                 scroll-behavior: auto;
             }
 
-            .hero-photo,
-            .footer-name {
+            .hero-photo {
                 transition: none;
             }
         }
@@ -542,8 +517,6 @@
                         aria-selected="false" tabindex="-1">Videos</button>
                     <button class="tab-button" id="tab-testimonials" type="button" role="tab"
                         aria-controls="testimonials" aria-selected="false" tabindex="-1">Testimonials</button>
-                    <button class="tab-button" id="tab-thoughts" type="button" role="tab" aria-controls="thoughts"
-                        aria-selected="false" tabindex="-1">PMM Philosophy</button>
                 </div>
                 <div class="tab-panels">
                 <section class="tab-panel" id="product-launches" role="tabpanel" aria-labelledby="tab-product-launches" hidden>
@@ -664,24 +637,6 @@
                     </div>
                 </section>
 
-                <section class="tab-panel" id="thoughts" role="tabpanel" aria-labelledby="tab-thoughts" hidden>
-                    <div class="tab-panel-content">
-                        <p>The purpose of product marketing is to align a company’s value and capabilities with market and
-                            customer needs. Good product marketing influences every stage of the customer journey, from
-                            awareness and consideration to evaluation and onboarding.</p>
-                        <p>To get there, product marketing teams need deep knowledge of customers, marketing, competitors,
-                            and the product, along with cross-functional relationships that help them take ownership of the
-                            team’s messages.</p>
-                        <p><em>I love Emma Stratton’s work on punchy messaging. Great messaging and positioning starts with
-                                VBF.</em></p>
-                        <ul>
-                            <li><strong>V: Value proposition</strong> — kick things off with a big goal.</li>
-                            <li><strong>B: Benefits</strong> — show off what your product provides.</li>
-                            <li><strong>F: Features</strong> — explain how the product achieves those benefits.</li>
-                        </ul>
-                    </div>
-                </section>
-
                 </div>
             </div>
                 </div>
@@ -691,7 +646,7 @@
         <footer class="site-footer" id="contact">
             <p class="footer-contact">Get in touch: <a href="https://www.linkedin.com/in/jhdupuis/" target="_blank"
                     rel="noreferrer">LinkedIn</a> or <a href="mailto:jemmadupuis@gmail.com">Email</a></p>
-            <p class="built-with">Built in 2026 by <span class="footer-name">Jemma Dupuis</span> with
+            <p class="built-with">Built with
                 <span class="footer-logos">
                     <a href="https://www.figma.com/" class="logo-link" target="_blank" rel="noreferrer"><img
                             class="logo-icon" src="Footer%20Images/Figma.png" alt="Figma"></a>
